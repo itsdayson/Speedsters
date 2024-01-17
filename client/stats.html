@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>fancy colors</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+  <label for="menu">Change my color: </label>
+  <select id="menu">
+    <option value="lemon">Lemon</option>
+    <option value="tangerine">Tangerine</option>
+    <option value="lime">Lime</option>
+    <option value="grapefruit">Grapefruit</option>
+    <option value="lavender">Lavender</option>
+  </select>
+
+
+  <script>
+
+    window.onload = () => {
+
+      const body = document.querySelector('body');
+      const menu = document.querySelector('#menu');
+      
+
+      menu.onchange = () => {
+        const fruit = menu.value;
+        fetch('/colors', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ fruit: fruit }),
+        })
+        .then(res => res.json())
+        .then(data => {
+          body.style.background = data.color;
+        })
+        .catch(err => console.log(err))
+      }
+    }
+
+  </script>
+</body>
+</html>
