@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 // Temporary storage for user data
-let userData = [
+const userData = [
   {
-    name: 'Jason',
+    name: '',
+    fiveK: '',
+    tenK: '',
+    halfMarathon: '',
+    marathon: '',
   },
 ];
 
